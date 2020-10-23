@@ -1,0 +1,134 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Hortelã"
+  description: "APP - Hortelã - Sistema para TecWeb"
+  contact:
+    name: "Valney Faria"
+    email: "valneyfaria@gmail.com"
+host: "hortela.ccomp.ufsj.edu.br"
+basepath: "/v1"
+tags:
+- name: "cultura"
+  description: "Tudo sobre as culturas"
+- name: "horta"
+  description: "Acesso ao sistema da horta"
+- name: "usuario"
+  description: "Operações para gerência de usuários"
+schemes:
+- "http"
+paths:
+  /cultura:
+    post:
+      tags:
+      - "cultura"
+      summary: "Adiciona uma nova cultura ao sistema"
+      operationId: "addCultura"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto cultura a ser adicionado no sistema"
+        required: true
+        schema:
+          $ref: "#/definitions/Cultura"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Cultura"
+/cultura/{culturaId}
+  get:
+    tags:
+    - "cultura"
+    summary: "Busca cultura pelo ID"
+    operationId: "getCulturaById"
+    produces:
+    - "application/json"
+    parameters:
+    - name: "culturaId"
+      in: "path"
+      description: "ID of cultura to return"
+      required: true
+      type: "integer"
+      format: "int64"
+    responses:
+      200:
+        description: "Successfull operation"
+        schema:
+          $ref: "#/definitions/Cultura"
+      400:
+        description: "Invalid ID supplied"
+      404:
+        description: "Cultura not found"
+  put:
+    tags:
+      - "cultura"
+      summary: "Atualizar uma cultura no sistema"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "culturaId"
+        in: "path"
+        description: "ID that need to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      -name: "body"
+        in: "body"
+        description: "updated cultura object"
+        schema:
+          $ref: "#/definitions/Cultura"
+        responses:
+          200:
+            description: "Successfull operation"
+            schema:
+              $ref: "#/definitions/Cultura"
+          400:
+            description: "Invalid ID supplied"
+          404:
+            description: "Cultura not found"
+  delete:
+    tags:
+    - "cultura"
+    summary: "Apaga uma cultura"
+    operationId: "deletaCultura"
+    produces:
+    - "application/json"
+    parameters:
+    - name: "culturaId"
+      in: "path"
+      description: "Culture ID to delete"
+      required: true
+      type: "integer"
+      format: "int64"
+  responses:
+      200:
+        description: "Successfull operation"
+        schema:
+          $ref: "#/definitions/Cultura"
+      400:
+        description: "Invalid ID supplied"
+      404:
+        description: "Cultura not found"
+definitions:
+Cultura:
+  type: "object"
+properties:
+  id:
+    type: "integer"
+    format: "int64"
+  nome_cultura:
+    type: "string"
+  dias_colheita:
+    type: "integer"
+    format: "int64"
+  data_plantio:
+    type: "date"
+  qtd_plantada:
+    type: "integer"
+    format: "int64"
+
