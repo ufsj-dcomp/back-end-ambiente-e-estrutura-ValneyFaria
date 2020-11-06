@@ -1,0 +1,12 @@
+{
+    "nome": "Valney",
+    "idade": "24"
+}
+
+{
+    "tipo_cultura": "Couve",
+    "data_plantio": "2020/02/18",
+    "dias_colheita": "26",
+    "qtd_plantada": "34",
+    "fk_idusuario": "1"
+}

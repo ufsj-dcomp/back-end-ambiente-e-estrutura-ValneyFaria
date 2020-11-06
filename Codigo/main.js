@@ -1,6 +1,5 @@
 var express = require("express");
 var app = express();
-
 var mysql = require("mysql")
 
 var connection = mysql.createConnection({
@@ -12,9 +11,36 @@ var connection = mysql.createConnection({
 
 app.use(express.json());
 
+app.post("/usuario", (req, resp) => {
+    var usuario = req.body;
+
+    connection.query("INSERT INTO usuario SET ?", [usuario], (err, result) => {
+        if (err) {
+            console.log(err);
+            resp.status(500).end();
+        } else {
+            resp.status(200);
+            resp.json(result);
+        }
+    });
+
+    console.log(usuario);
+
+});
 
 app.post("/cultura", (req, resp) => {
     var cultura = req.body;
+
+    connection.query("INSERT INTO cultura SET ?", [cultura], (err, result) => {
+        if (err) {
+            console.log(err);
+            resp.status(500).end();
+        } else {
+            resp.status(200);
+            resp.json(result);
+        }
+    });
+
     console.log(cultura);
 });
 
@@ -43,7 +69,7 @@ app.delete("/cultura/:culturaId", (req, resp) => {
     console.log("DELETE - CulturaId " + culturaId)
 });
 
-var porta = 3004
+var porta = 3010
 app.listen(porta, () => {
     console.log("Hortela - Porta " + porta + "!");
 })

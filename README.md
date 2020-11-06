@@ -13,3 +13,6 @@ https://www.hostnet.com.br/info/exportacao-do-banco-via-mysql-workbench/
 
 https://www.devmedia.com.br/introducao-ao-novo-mysql-workbench/25939
 
+('couve', '2020/11/04', 60, 346.89)
+
+https://codeforgeek.com/update-code-without-restarting-node-server/
