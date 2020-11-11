@@ -16,3 +16,9 @@ https://www.devmedia.com.br/introducao-ao-novo-mysql-workbench/25939
 ('couve', '2020/11/04', 60, 346.89)
 
 https://codeforgeek.com/update-code-without-restarting-node-server/
+
+
+Install Angular:
+    npm install -g @angular/cli
+FONTE: https://angular.io/guide/setup-local
+
