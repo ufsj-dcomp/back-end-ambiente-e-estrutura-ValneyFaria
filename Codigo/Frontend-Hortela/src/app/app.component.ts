@@ -1,4 +1,6 @@
+// Parte de comportamento
 import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
