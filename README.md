@@ -52,3 +52,20 @@ Erros:
             
 FONTE: https://www.vivaolinux.com.br/dica/Error-ENOSPC-System-limit-for-number-of-file-watchers-reached-Resolvido
 
+Instalar Bootstrap
+    npm install bootstrap
+Instalar JQuery
+    npm install jquery
+
+Em Frontend-Hortela/src/app/angular.json, inserir:
+    Em styles:
+        "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css"
+        ]
+    Em scripts:
+        "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
+
+    

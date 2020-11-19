@@ -5,8 +5,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 import { CulturaComponent } from './cultura/cultura.component';
 import { VendaComponent } from './venda/venda.component';
 
@@ -23,6 +24,7 @@ import { VendaComponent } from './venda/venda.component';
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
+    MatTableModule,
     BrowserAnimationsModule
   ],
   providers: [],
