@@ -22,11 +22,11 @@ const CULTURAS: Cultura[] = [
 export class CulturaComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'variedade', 'data_plantio', 'dias_colheita', 'qtd_plantada'];
-  dataSource: typeof CULTURAS;
+  dataSource: CULTURAS;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }
