@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CulturaService } from '../cultura.service';
 
 export class Cultura {
   id: number;
@@ -24,9 +25,11 @@ export class CulturaComponent implements OnInit {
   displayedColumns: string[] = ['id', 'variedade', 'data_plantio', 'dias_colheita', 'qtd_plantada'];
   dataSource = CULTURAS;
 
-  constructor() { }
+  constructor(private service: CulturaService) { }
 
+  // Método chamado quando a página é renderizada
   ngOnInit() {
+    this.service.getCulturas().subscribe(culturas => this.dataSource = culturas);
   }
 
 }

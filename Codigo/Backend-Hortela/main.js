@@ -1,31 +1,31 @@
 var express = require("express");
+var cors = require("cors");
 var app = express();
-var mysql = require("mysql")
 
+var mysql = require("mysql")
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '1234',
     database: 'hortela'
-})
+});
 
+app.use(cors());
 app.use(express.json());
 
-app.post("/usuario", (req, resp) => {
-    var usuario = req.body;
-
-    connection.query("INSERT INTO usuario SET ?", [usuario], (err, result) => {
+app.get("/cultura", (req, resp) => {
+    console.log("GET - Cultura");
+    
+    connection.query("SELECT * FROM cultura", (err, result) => {
         if (err) {
             console.log(err);
             resp.status(500).end();
-        } else {
+        }
+        else {
             resp.status(200);
             resp.json(result);
         }
     });
-
-    console.log(usuario);
-
 });
 
 app.post("/cultura", (req, resp) => {
@@ -61,7 +61,33 @@ app.get("/cultura/:culturaId", (req, resp) => {
 
 app.put("/cultura/:culturaId", (req, resp) => {
     var culturaId = req.params.culturaId;
-    console.log("PUT - CulturaId " + culturaId)
+    var cultura = req.body;
+    console.log("PUT - CulturaId " + culturaId);
+
+    connection.query("UPDATE cultura SET ? WHERE id = ?", [cultura, culturaId], (err, result) => {
+        if (err) {
+            console.log(err);
+            resp.status(500).end();
+        } else {
+            resp.status(200);
+        }
+    });
+});
+
+app.post("/usuario", (req, resp) => {
+    var usuario = req.body;
+
+    connection.query("INSERT INTO usuario SET ?", [usuario], (err, result) => {
+        if (err) {
+            console.log(err);
+            resp.status(500).end();
+        } else {
+            resp.status(200);
+            resp.json(result);
+        }
+    });
+
+    console.log(usuario);
 });
 
 app.delete("/cultura/:culturaId", (req, resp) => {
@@ -69,7 +95,7 @@ app.delete("/cultura/:culturaId", (req, resp) => {
     console.log("DELETE - CulturaId " + culturaId)
 });
 
-var porta = 3010
+var porta = 3000
 app.listen(porta, () => {
     console.log("Hortela - Porta " + porta + "!");
 })

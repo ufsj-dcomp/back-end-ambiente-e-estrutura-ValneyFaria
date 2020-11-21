@@ -68,4 +68,5 @@ Em Frontend-Hortela/src/app/angular.json, inserir:
               "./node_modules/bootstrap/dist/js/bootstrap.js"
             ]
 
-    
+Para iniciar o service:
+    ng generate service cultura

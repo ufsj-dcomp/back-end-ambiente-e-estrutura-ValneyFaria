@@ -1,3 +1,9 @@
+<div class="row justify-content-md-center mt-5">
+  <div class="col-8 align-self-center">
+    <h1>Culturas</h1>
+  </div>
+</div>
+
 <div class="row justify-content-md-center">
   <div class="col-8">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="100%">
@@ -8,7 +14,7 @@
 
       <ng-container matColumnDef="variedade">
         <th mat-header-cell *matHeaderCellDef>Variedade</th>
-        <td mat-cell *matCellDef="let cultura">{{cultura.variedade}}</td>
+        <td mat-cell *matCellDef="let cultura">{{cultura.cultura}}</td>
       </ng-container>
 
       <ng-container matColumnDef="data_plantio">

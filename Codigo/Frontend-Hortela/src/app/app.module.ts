@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { CulturaComponent } from './cultura/cultura.component';
 import { VendaComponent } from './venda/venda.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,6 +26,7 @@ import { VendaComponent } from './venda/venda.component';
     MatToolbarModule,
     MatButtonModule,
     MatTableModule,
+    HttpClientModule,
     BrowserAnimationsModule
   ],
   providers: [],
