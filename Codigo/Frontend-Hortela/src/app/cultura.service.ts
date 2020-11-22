@@ -10,7 +10,19 @@ export class CulturaService {
 
   constructor(private http: HttpClient) { }
 
-  getCulturas(): Observable<Cultura[]>{
+  getCulturas(): Observable<Cultura[]> {
     return this.http.get<Cultura[]>("http://localhost:3000/cultura");
+  }
+
+  getCultura(culturaId: number): Observable<Cultura> {
+    return this.http.get<Cultura>("http://localhost:3000/cultura/" + culturaId);
+  }
+
+  adicionar(cultura: Cultura): Observable<any> {
+    return this.http.post("http://localhost:3000/cultura", cultura);
+  }
+
+  editar(cultura: Cultura): Observable<any> {
+    return this.http.put("http://localhost:3000/cultura/" + cultura.idcultura, cultura);
   }
 }

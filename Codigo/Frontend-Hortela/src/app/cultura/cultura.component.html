@@ -3,7 +3,8 @@
     <h1>Culturas</h1>
   </div>
   <div class="col-2 align-self-center">
-    <button mat-stroked-button class="float-right" color="primary" (click)="openNewDialog()">Adicionar</button>
+    <button mat-stroked-button class="float-right" color="primary" (click)="openNewDialog()">Adicionar uma
+      cultura</button>
   </div>
 </div>
 
@@ -33,6 +34,13 @@
       <ng-container matColumnDef="qtd_plantada">
         <th mat-header-cell *matHeaderCellDef>Quantidade Plantada</th>
         <td mat-cell *matCellDef="let cultura">{{cultura.qtd_plantada}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matCellDef></th>
+        <td mat-cell *matCellDef="let bike">
+          <button mat-stroked-button class="float-right" color="blue" (click)="openEditDialog(bike)">Editar</button>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

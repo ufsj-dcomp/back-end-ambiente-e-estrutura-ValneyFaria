@@ -70,3 +70,12 @@ Em Frontend-Hortela/src/app/angular.json, inserir:
 
 Para iniciar o service:
     ng generate service cultura
+
+Definindo valor padrao para uma coluna do SQL
+    ALTER TABLE MYEMP ALTER COLUMN JOB SET DEFAULT 'PENDING'
+https://www.ibm.com/support/knowledgecenter/en/SSEPEK_12.0.0/admin/src/tpc/db2z_changecolumndefault.html
+
+Limpar a tabela:
+	DELETE FROM cultura WHERE idcultura > 0;
+Resetar o autoincremento:
+	ALTER TABLE cultura AUTO_INCREMENT = 1;

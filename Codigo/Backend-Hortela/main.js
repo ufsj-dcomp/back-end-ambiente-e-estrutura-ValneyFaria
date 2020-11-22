@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.get("/cultura", (req, resp) => {
     console.log("GET - Cultura");
-    
+
     connection.query("SELECT * FROM cultura", (err, result) => {
         if (err) {
             console.log(err);
@@ -30,6 +30,7 @@ app.get("/cultura", (req, resp) => {
 
 app.post("/cultura", (req, resp) => {
     var cultura = req.body;
+    console.log("POST - Cultura");
 
     connection.query("INSERT INTO cultura SET ?", [cultura], (err, result) => {
         if (err) {
@@ -37,7 +38,7 @@ app.post("/cultura", (req, resp) => {
             resp.status(500).end();
         } else {
             resp.status(200);
-            resp.json(result);
+            resp.json(result.insertedId);
         }
     });
 
