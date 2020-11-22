@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CulturaService } from '../cultura.service';
 
 export class Cultura {
-  id: number;
-  variedade: string;
+  idcultura: number;
+  tipo_cultura: string;
   data_plantio: string;
   dias_colheita: number;
   qtd_plantada: number;
 }
 
 const CULTURAS: Cultura[] = [
-  { id: 1, variedade: 'alface', data_plantio: '29/05/2020', dias_colheita: 50, qtd_plantada: 30 },
-  { id: 2, variedade: 'couve', data_plantio: '12/07/2020', dias_colheita: 80, qtd_plantada: 45 }
+  { idcultura: 1, tipo_cultura: 'alface', data_plantio: '29/05/2020', dias_colheita: 50, qtd_plantada: 30 },
+  { idcultura: 2, tipo_cultura: 'couve', data_plantio: '12/07/2020', dias_colheita: 80, qtd_plantada: 45 }
 ];
 
 
@@ -22,7 +22,7 @@ const CULTURAS: Cultura[] = [
 })
 export class CulturaComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'variedade', 'data_plantio', 'dias_colheita', 'qtd_plantada'];
+  displayedColumns: string[] = ['idcultura', 'tipo_cultura', 'data_plantio', 'dias_colheita', 'qtd_plantada'];
   dataSource = CULTURAS;
 
   constructor(private service: CulturaService) { }
