@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>Adicionar uma cultura</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-8">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Tipo da Cultura</mat-label>
+        <input matInput [(ngModel)]="data.tipo_cultura">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Data de Plantio</mat-label>
+        <input matInput [(ngModel)]="data.data_plantio">
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-8">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Dias até a colheita</mat-label>
+      <input matInput [(ngModel)]="data.dias_colheita">
+    </mat-form-field>
+  </div>
+</div>
+<div class="row">
+  <div class="col-8">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Quantidade Plantada</mat-label>
+      <input matInput [(ngModel)]="data.qtd_plantada">
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Salvar</button>
+</div>
