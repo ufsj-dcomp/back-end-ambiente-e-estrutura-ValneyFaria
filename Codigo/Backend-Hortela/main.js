@@ -65,7 +65,7 @@ app.put("/cultura/:culturaId", (req, resp) => {
     var cultura = req.body;
     console.log("PUT - CulturaId " + culturaId);
 
-    connection.query("UPDATE cultura SET ? WHERE id = ?", [cultura, culturaId], (err, result) => {
+    connection.query("UPDATE cultura SET ? WHERE idcultura = ?", [cultura, culturaId], (err, result) => {
         if (err) {
             console.log(err);
             resp.status(500).end();
@@ -93,7 +93,19 @@ app.post("/usuario", (req, resp) => {
 
 app.delete("/cultura/:culturaId", (req, resp) => {
     var culturaId = req.params.culturaId;
-    console.log("DELETE - CulturaId " + culturaId)
+    var cultura = req.body;
+    console.log("DELETE - CulturaId " + culturaId);
+
+    connection.query("DELETE FROM cultura WHERE idcultura = ?", [culturaId], (err, result) => {
+        if (err) {
+            console.log(err);
+            resp.status(500).end();
+        } else {
+            resp.status(200);
+            resp.json(result);
+        }
+    });
+
 });
 
 var porta = 3000

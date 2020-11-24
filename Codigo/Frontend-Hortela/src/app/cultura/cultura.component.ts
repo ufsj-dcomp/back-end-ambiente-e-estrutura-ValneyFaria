@@ -18,9 +18,8 @@ export class Cultura {
 })
 export class CulturaComponent implements OnInit {
 
-  displayedColumns: string[] = ['idcultura', 'tipo_cultura', 'data_plantio', 'dias_colheita', 'qtd_plantada'];
+  displayedColumns: string[] = ['idcultura', 'tipo_cultura', 'data_plantio', 'dias_colheita', 'qtd_plantada', 'acoes'];
 
-  // dataSource = CULTURAS;
   dataSource = new MatTableDataSource<Cultura>();
 
   constructor(private service: CulturaService, public dialog: MatDialog) { }
@@ -56,10 +55,16 @@ export class CulturaComponent implements OnInit {
       console.log(cultura);
       this.service.editar(cultura).subscribe(_ => {
         this.dataSource.data = this.dataSource.data.map(oldCultura => {
-          if (oldCultura.idcultura == cultura.culturaId) return cultura;
+          if (oldCultura.idcultura == cultura.idcultura) return cultura;
 
         });
       });
+    })
+  }
+
+  excluir(cultura: Cultura): void {
+    this.service.remover(cultura.idcultura).subscribe(_ => {
+      this.dataSource.data = this.dataSource.data.filter(oldCultura => oldCultura.idcultura != cultura.idcultura);
     })
   }
 

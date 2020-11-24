@@ -25,4 +25,9 @@ export class CulturaService {
   editar(cultura: Cultura): Observable<any> {
     return this.http.put("http://localhost:3000/cultura/" + cultura.idcultura, cultura);
   }
+
+  remover(culturaId: number): Observable<any> {
+    return this.http.delete("http://localhost:3000/cultura/" + culturaId);
+
+  }
 }
