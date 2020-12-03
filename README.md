@@ -85,4 +85,10 @@ Aula de Autenticação:
     - Lib para manter o login
         npm install jsonwebtoken
 
-    
+Desfazer alterações locais:
+# Para arquivos
+git clean -f
+
+# Para diretórios
+git clean -fd
+https://metring.com.br/git-desfazendo-mudancas-locais

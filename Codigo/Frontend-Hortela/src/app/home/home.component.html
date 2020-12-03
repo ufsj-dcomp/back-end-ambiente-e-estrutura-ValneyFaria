@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Hortelã App</span>
+    <div>
+      <a mat-button [routerLink]="'/home/cultura'">Culturas</a>
+      <a mat-button [routerLink]="'/home/venda'">Vendas</a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container-fluid">
+  <!-- placeholder -->
+  <router-outlet></router-outlet>
+</div>
