@@ -22,9 +22,9 @@ export class Usuario {
 })
 export class AuthComponent implements OnInit {
 
-  private nome: string;
-  private senha: string;
-  private authInvalido: boolean;
+  nome: string;
+  senha: string;
+  authInvalido: boolean;
 
   constructor(private authService: AuthService, private router: Router, private globals: Globals) { }
 
