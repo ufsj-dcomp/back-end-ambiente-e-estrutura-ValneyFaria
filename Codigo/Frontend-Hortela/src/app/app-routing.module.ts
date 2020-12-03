@@ -4,8 +4,15 @@ import { CulturaComponent } from './cultura/cultura.component';
 import { VendaComponent } from './venda/venda.component';
 
 const routes: Routes = [
-  { path: 'cultura', component: CulturaComponent },
-  { path: 'venda', component: VendaComponent }
+  { path: '', component: AuthComponent },
+  {
+    path: 'home', component: HomeComponent,
+    children: [
+      { path: 'cultura', component: CulturaComponent },
+      { path: 'venda', component: VendaComponent }
+    ]
+  },
+  { path: 'auth', component: AuthComponent }
 ];
 
 @NgModule({

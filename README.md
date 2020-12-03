@@ -79,3 +79,10 @@ Limpar a tabela:
 	DELETE FROM cultura WHERE idcultura > 0;
 Resetar o autoincremento:
 	ALTER TABLE cultura AUTO_INCREMENT = 1;
+
+
+Aula de Autenticação:
+    - Lib para manter o login
+        npm install jsonwebtoken
+
+    

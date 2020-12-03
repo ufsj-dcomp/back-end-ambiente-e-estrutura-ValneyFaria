@@ -1,5 +1,6 @@
 var express = require("express");
 var cors = require("cors");
+var jwt = require("jsonwebtoken");
 var app = express();
 
 var mysql = require("mysql")
@@ -13,7 +14,42 @@ var connection = mysql.createConnection({
 app.use(cors());
 app.use(express.json());
 
-app.get("/cultura", (req, resp) => {
+// Rota para autenticação
+app.post('/auth', (req, resp) => {
+    var user = req.body;
+    connection.query("SELECT * FROM usuario WHERE nome = ? and senha = ?", [user.nome, user.senha], (err, result) => {
+        var usuario = result[0];
+
+        if (result.length == 0) {
+            resp.status(401);
+            resp.send({ token: null, usuario: usuario, success: false });
+        }
+        else {
+            let token = jwt.sign({ id: usuario.nome }, 'hortela', { expiresIn: 6000 });
+            resp.status(200);
+            resp.send({ token: token, usuario: usuario, success: true });
+        }
+    });
+});
+
+verifica_token = (req, resp, next) => {
+    // Toda requisição do frontend para o back deve ser feita no cabeçalho da requisição
+    var token = req.headers['x-access-token'];
+
+    if (!token) {
+        return resp.status(401).end();
+    }
+
+    jwt.verify(token, 'hortela', (err, decoded) => {
+        if (err) {
+            return resp.status(401).end();
+        }
+        req.usuario = decoded.id;
+        next();
+    })
+}
+
+app.get("/cultura", verifica_token, (req, resp) => {
     console.log("GET - Cultura");
 
     connection.query("SELECT * FROM cultura", (err, result) => {
@@ -28,7 +64,7 @@ app.get("/cultura", (req, resp) => {
     });
 });
 
-app.post("/cultura", (req, resp) => {
+app.post("/cultura", verifica_token, (req, resp) => {
     var cultura = req.body;
     console.log("POST - Cultura");
 
@@ -45,7 +81,7 @@ app.post("/cultura", (req, resp) => {
     console.log(cultura);
 });
 
-app.get("/cultura/:culturaId", (req, resp) => {
+app.get("/cultura/:culturaId", verifica_token, (req, resp) => {
     var culturaId = req.params.culturaId;
     console.log("GET - CulturaId " + culturaId)
 
@@ -60,7 +96,7 @@ app.get("/cultura/:culturaId", (req, resp) => {
     });
 });
 
-app.put("/cultura/:culturaId", (req, resp) => {
+app.put("/cultura/:culturaId", verifica_token, (req, resp) => {
     var culturaId = req.params.culturaId;
     var cultura = req.body;
     console.log("PUT - CulturaId " + culturaId);
@@ -75,23 +111,7 @@ app.put("/cultura/:culturaId", (req, resp) => {
     });
 });
 
-app.post("/usuario", (req, resp) => {
-    var usuario = req.body;
-
-    connection.query("INSERT INTO usuario SET ?", [usuario], (err, result) => {
-        if (err) {
-            console.log(err);
-            resp.status(500).end();
-        } else {
-            resp.status(200);
-            resp.json(result);
-        }
-    });
-
-    console.log(usuario);
-});
-
-app.delete("/cultura/:culturaId", (req, resp) => {
+app.delete("/cultura/:culturaId", verifica_token, (req, resp) => {
     var culturaId = req.params.culturaId;
     var cultura = req.body;
     console.log("DELETE - CulturaId " + culturaId);
@@ -106,6 +126,22 @@ app.delete("/cultura/:culturaId", (req, resp) => {
         }
     });
 
+});
+
+app.post("/usuario", verifica_token, (req, resp) => {
+    var usuario = req.body;
+
+    connection.query("INSERT INTO usuario SET ?", [usuario], (err, result) => {
+        if (err) {
+            console.log(err);
+            resp.status(500).end();
+        } else {
+            resp.status(200);
+            resp.json(result);
+        }
+    });
+
+    console.log(usuario);
 });
 
 var porta = 3000
