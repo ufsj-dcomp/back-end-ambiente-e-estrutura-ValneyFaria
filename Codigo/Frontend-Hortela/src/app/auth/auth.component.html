@@ -1,22 +1,28 @@
-<div class="login-wrapper">
-  <form class="login">
-    <section class="title">
-      <h3 class="welcome">Seja Bem-Vindo ao Hortelã</h3>
-      <p class="hint">Insira seu usuário para acessar o sistema</p>
-    </section>
-    <div class="login-group">
-      <mat-form-field style="width: 100%;">
-        <mat-label>Usuário</mat-label>
-        <input matInput name="nome" [(ngModel)]="nome">
-      </mat-form-field>
-      <mat-form-field style="width: 100%;">
-        <mat-label>Senha</mat-label>
-        <input matInput name="senha" [(ngModel)]="senha">
-      </mat-form-field>
-      <div class="error active" *ngIf="authInvalido">
-        Usuário ou Senha Inválidos
-      </div>
-      <button mat-raised-button (click)="auth()">Entrar</button>
+<div class="main-div">
+  <mat-card class="example-card">
+    <div class="login-wrapper">
+      <form class="login">
+        <section class="title">
+          <h3 class="welcome">Seja Bem-Vindo ao Hortelã</h3>
+          <p class="hint">Insira seu usuário para acessar o sistema</p>
+        </section>
+        <div class="login-group">
+          <mat-form-field style="width: auto;">
+            <mat-label>Usuário</mat-label>
+            <input matInput name="nome" [(ngModel)]="nome">
+          </mat-form-field>
+          <mat-form-field style="width: auto;">
+            <mat-label>Senha</mat-label>
+            <input matInput name="senha" [(ngModel)]="senha">
+          </mat-form-field>
+        </div>
+        <div layout-align="center">
+          <button mat-button (click)="auth()">Entrar</button>
+        </div>
+        <div class="error active" *ngIf="authInvalido">
+          Usuário ou Senha Inválidos
+        </div>
+      </form>
     </div>
-  </form>
+  </mat-card>
 </div>
